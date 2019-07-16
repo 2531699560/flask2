@@ -1,0 +1,1 @@
+sed -i "s/#30 01 \* \* \* php -q \/alidata\/rpc.mutouyun.com\/public\/cli.php request_uri\=\"\/crontab\/reportdaily\/index\"/30 01 \* \* \* php -q \/alidata\/rpc.mutouyun.com\/public\/cli.php request_uri\=\"\/crontab\/reportdaily\/index\"/"  /var/spool/cron/www && echo "Crontab enabled"

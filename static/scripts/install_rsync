@@ -1,0 +1,10 @@
+cd /usr/local/src/ 
+wget http://rsync.samba.org/ftp/rsync/src/rsync-3.0.9.tar.gz 
+tar zxvf rsync-3.0.9.tar.gz 
+cd rsync-3.0.9
+./configure --prefix=/usr/local/rsync 
+make && make install
+echo "backup" > /usr/local/rsync/rsync.passwd
+chmod 0600 /usr/local/rsync/rsync.passwd
+
+yum install inotify-tools -y

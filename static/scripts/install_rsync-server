@@ -1,0 +1,41 @@
+cd /usr/local/src/ 
+wget http://rsync.samba.org/ftp/rsync/src/rsync-3.0.9.tar.gz 
+tar zxvf rsync-3.0.9.tar.gz 
+cd rsync-3.0.9
+./configure --prefix=/usr/local/rsync 
+make && make install
+
+echo "backup:backup" > /usr/local/rsync/rsyncd.passwd
+
+chmod 600 /usr/local/rsync/rsyncd.passwd
+
+cat >/usr/local/rsync/rsyncd.conf <<EOF
+uid = root 
+gid = root 
+use chroot = no 
+max connections = 4 
+strict modes = yes 
+hosts allow = 0.0.0.0
+port = 873 
+pid file = /var/run/rsyncd.pid 
+lock file = /var/run/rsync.lock 
+log file = /var/log/rsyncd.log
+
+[test]
+path = /tmp/
+ignore errors
+read only = false
+list = false
+auth users = backup
+secrets file = /usr/local/rsync/rsyncd.passwd
+EOF
+
+rsync --daemon --config=/usr/local/rsync/rsyncd.conf
+
+echo "/usr/local/rsync/bin/rsync --daemon --config=/usr/local/rsync/rsyncd.conf" >> /etc/rc.local
+
+chmod +x /etc/rc.d/rc.local 
+systemctl daemon-reload
+
+
+

@@ -1,0 +1,22 @@
+yum -y install pcre-devel openssl openssl-devel wget gcc-c++ wget net-tools
+yum install -y pcre-devel zlib-devel libxml2-devel openssl-devel bzip2 bzip2-devel curl-devel libjpeg-devel libpng libpng-devel libmcrypt-devel readline-devel libxslt libxslt-devel autoconf gcc-c++ freetype-devel libicu-devel libxml2  libxml2-devel
+#wget -P /tmp http://cn2.php.net/distributions/php-7.2.4.tar.gz 
+
+mkdir /usr/local/php
+tar -zxvf /tmp/php-7.2.4.tar.gz -C /opt/
+
+cd /opt/php-7.2.4
+
+./configure --prefix=/usr/local/php --with-config-file-path=/usr/local/php/etc --enable-fpm --with-fpm-user=www --with-fpm-group=www --enable-mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-iconv-dir --with-freetype-dir=/usr/local/freetype --with-jpeg-dir --with-png-dir --with-zlib --with-libxml-dir=/usr --enable-xml --disable-rpath --enable-bcmath --enable-shmop --enable-sysvsem --enable-inline-optimization --with-curl --enable-mbregex --enable-mbstring --enable-intl --enable-ftp --with-gd --with-openssl --with-mhash --enable-pcntl --enable-sockets --with-xmlrpc --enable-zip --enable-soap --with-gettext --disable-fileinfo --enable-opcache --with-xsl
+
+ln -s /usr/local/lib/libiconv.so.2 /usr/lib64/
+make ZEND_EXTRA_LIBS='-liconv'
+
+make && make install
+
+echo 'PATH="/usr/local/php/bin:$PATH"'>> /etc/profile;source /etc/profile
+
+ln -s /usr/local/php/bin/php /usr/bin/php
+
+
+
