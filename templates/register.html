@@ -16,7 +16,7 @@
             border-top: 1px solid white;
         }
         html {
-          background: url(/static/img/login6.jpg) no-repeat center center fixed;
+          background: url(/static/img/login4.jpg) no-repeat center center fixed;
           -webkit-background-size: cover;
           -moz-background-size: cover;
           -o-background-size: cover;
@@ -26,6 +26,26 @@
     <title>登录</title>
   </head>
   <body style="width:98%;background-color: transparent;">
+    <div class="row" style="margin-top:15%;margin-left:55%;background-color: transparent;">
+        <form action="/login/"  method="post">
+            <div class="panel panel-default" style="width:400px; margin-left: 150px; margin-top: 150px">
+              <div class="panel-heading">
+                  <h4>登录</h4>
+              </div>
+              <div class="panel-body" id="login-info">
+                  <input type="text" placeholder="用户名" class="form-control" name="username">
+                  <hr >
+                  <input type="password" placeholder="密码" class="form-control" name="password1">
+                  <hr >
+                  <input type="password" placeholder="确认密码" class="form-control" name="password2">
+              </div>
+                <div class="panel-footer" style="padding-top:20px;padding-bottom:10px">
+                    <button type="submit" class="btn btn-primary form-control" id="sub-login" >登录</button>
+                    <h5 style="color: red;margin-top: 5px;">{{ msg }}</h5>
+                </div>
+              </div>
+        </form>
+        </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/static/js/jquery-3.2.1.min.js"></script>

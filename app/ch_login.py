@@ -9,5 +9,5 @@ def is_login(func):
         if user_id:
             return func(*args,**kwargs)
         else:
-            return redirect(url_for('user.login'))
+            return redirect(url_for('/.login'))
     return check_login
